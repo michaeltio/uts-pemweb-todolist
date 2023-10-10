@@ -1,0 +1,30 @@
+{
+  "name": "uts-pemweb-todolist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "postcss styles.css --config postcss.config.js -o public/css/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaeltio/uts-pemweb-todolist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaeltio/uts-pemweb-todolist/issues"
+  },
+  "homepage": "https://github.com/michaeltio/uts-pemweb-todolist#readme",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3"
+  },
+  "description": ""
+}
