@@ -2,6 +2,7 @@ CREATE DATABASE todolist;
 use todolist;
 
 
+CREATE TABLE tasks(
     id_workspace    INT AUTO_INCREMENT,
     id_user         INT,
     title           VARCHAR(30) NOT NULL,
