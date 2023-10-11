@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'lato-regular': ['lato-regular', 'sans'], 
+      'raleway-bold': ['raleway-bold', 'sans'], 
+    },
   },
   plugins: [],
 }
