@@ -12,7 +12,17 @@
     <link href="/public/css/tailwind.css" rel="stylesheet">
     <title>To do List</title>
 </head>
-<body class="bg-black">
-    <h1 class="text-red-700">Hello</h1>
+
+<body class="bg-gray-200">
+    <div class="bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 h-64">
+        <div class="text-white p-4">
+            <h1 class="text-3xl font-bold">Hello, Tailwind CSS</h1>
+            <p class="text-xl">This is a gradient background example.</p>
+        </div>
+    </div>
+
+    <div class="p-8">
+        <p>This is the content of your webpage.</p>
+    </div>
 </body>
 </html
