@@ -1,8 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["*/*.{html,js,php}"],
-   theme: {
-     extend: {},
-},
-   plugins: [],
+  content: [
+    './index.html',    
+    './**/*.html',     
+    './index.php',     
+    './**/*.php',      
+  ],
+  theme: {
+    extend: {},
+    fontFamily: {
+      'lato-regular': ['lato-regular', 'sans'], 
+      'raleway-bold': ['raleway-bold', 'sans'], 
+    },
+  },
+  plugins: [],
 }
+

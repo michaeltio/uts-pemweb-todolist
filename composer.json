@@ -1,0 +1,20 @@
+{
+    "name": "nflue/uts-pemweb-todolist",
+    "autoload": {
+        "psr-4": {
+            "Nflue\\UtsPemwebTodolist\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "michael tio",
+            "email": "77330912+michaeltio@users.noreply.github.com"
+        }
+    ],
+    "scripts": {
+        "start": "php -S localhost:8000"
+    },
+    "require-dev": {
+        "symfony/web-server-bundle": "^4.4"
+    }
+}
