@@ -2,7 +2,8 @@
     "name": "nflue/uts-pemweb-todolist",
     "autoload": {
         "psr-4": {
-            "Nflue\\UtsPemwebTodolist\\": "src/"
+            "Nflue\\UtsPemwebTodolist\\": "src/",
+            "Models\\" : "lib/models"
         }
     },
     "authors": [

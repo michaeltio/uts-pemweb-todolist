@@ -1,7 +1,3 @@
-<?php
-    //register page
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/app.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./regex.js"></script>
+    <script src="./../function/regex.js"></script>
     
     <title>Register | Priorilist</title>
 </head>
@@ -19,13 +15,12 @@
             <a href="./index.php"><-</a>
             <div class="mb-4">
                 <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-
-                <input type="text" id="username" name="username" oninput="filterInput(this)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username">
+                <input type="text" id="username" name="username" oninput="filterInput(this)" class="input-required shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username" required>
             </div>
 
             <div class="mb-6">
                 <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password">
+                <input type="password" id="password" name="password" class="input-required shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password" required>
             </div>
 
             <div class="flex items-center justify-between">

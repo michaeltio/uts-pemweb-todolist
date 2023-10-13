@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/app.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./../function/regex.js"></script>
     <title>Login | Priorilist</title>
 </head>
 <body class="bg-gradient-to-tr from-orange-500 to-purple-500">
@@ -26,7 +27,7 @@
             </div>
 
             <div class="flex items-center justify-between">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Register</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">Login</button>
             </div>
         </form>
     </div>
