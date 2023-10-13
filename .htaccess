@@ -1,8 +1,0 @@
-DirectoryIndex pages/index.php
-
-RewriteEngine On
-
-RewriteRule ^login$ ./pages/login-page.php [NC]
-RewriteRule ^register$ ./pages/register-page.php [NC]
-RewriteRule ^dashboard$ ./pages/workspace-page.php [NC]
-

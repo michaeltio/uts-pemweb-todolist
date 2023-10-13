@@ -51,10 +51,19 @@ class ComposerStaticInitf88748ea26067e76f6d463a1d8d5bc1c
             'Psr\\Log\\' => 8,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
+            'PhpOption\\' => 10,
         ),
         'N' => 
         array (
             'Nflue\\UtsPemwebTodolist\\' => 24,
+        ),
+        'G' => 
+        array (
+            'GrahamCampbell\\ResultType\\' => 26,
+        ),
+        'D' => 
+        array (
+            'Dotenv\\' => 7,
         ),
     );
 
@@ -159,9 +168,21 @@ class ComposerStaticInitf88748ea26067e76f6d463a1d8d5bc1c
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'Nflue\\UtsPemwebTodolist\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'GrahamCampbell\\ResultType\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
     );
 

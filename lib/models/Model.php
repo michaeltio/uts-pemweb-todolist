@@ -6,7 +6,6 @@ class Model{
     private $database;
     private $conn;
 
-
     //untuk konek ke database waktu model baru dibuat
     public function __construct($host, $username, $password, $database) {
         $this->host = $host;
@@ -23,29 +22,6 @@ class Model{
             die("Connection failed: " . $this->conn->connect_error);
         }
     }
-
-    //untuk panggil select
-    public function executeSelectQuery($sql) {
-        $result = $this->conn->query($sql);
-        $data = array();
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-        }
-
-        return $data;
-    }
-
-    public function executeNonQuery($sql) {
-        if ($this->conn->query($sql) === TRUE) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     public function close() {
         $this->conn->close();
