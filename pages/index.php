@@ -13,16 +13,14 @@
     <title>To do List</title>
 </head>
 
-<body class="bg-gray-200">
-    <div class="bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 h-64">
-        <div class="text-white p-4">
-            <h1 class="text-3xl font-bold">Hello, Tailwind CSS</h1>
-            <p class="text-xl">This is a gradient background example.</p>
+<body class="bg-gradient-to-tr from-orange-500 to-purple-500">
+    <div class="flex justify-center flex-col items-center h-screen">
+        <h1 class="text-6xl text-center text-white raleway-bold">WELCOME TO PRIORILIST</h1>
+        <p class="text-white text-lg">Stay Organized, Achieve More.</p>
+        <div class="mt-4">
+            <a href="register" class="inline-block px-6 py-3 text-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-full hover:shadow-lg transition duration-300 ease-in-out mr-4">Register</a>
+            <a href="login" class="inline-block px-6 py-3 text-lg font-semibold text-white bg-green-500 hover:bg-green-600 rounded-full hover:shadow-lg transition duration-300 ease-in-out">Login</a>
         </div>
-    </div>
-
-    <div class="p-8">
-        <p>This is the content of your webpage.</p>
     </div>
 </body>
 </html
