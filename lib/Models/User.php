@@ -34,19 +34,33 @@
             }
         }
     
-        public function query($sql) {
-            $result = $this->conn->query($sql);
-    
-            if (!$result) {
-                die("Query failed: " . $this->conn->error);
+        public function auth($username, $password) {
+            $query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("ss", $username, $password);
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+
+            if($user){
+                session_start();
+                $_SESSION['username'] = $user['username'];
+                return true;
             }
-    
-            return $result;
+            else{
+                return false;
+            }
+
         }
         
         public function insertData($username, $password){
-            $this->conn->query("INSERT INTO users(username,password) VALUES ('$username', '$password')");
+            $query = "INSERT INTO users(username, password) VALUES (?, ?)";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("ss", $username, $password);
 
+            $stmt->execute();
+          
         }
     
         public function close() {

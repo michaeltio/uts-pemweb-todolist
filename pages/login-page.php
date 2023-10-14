@@ -14,7 +14,7 @@
 </head>
 <body class="bg-gradient-to-tr from-orange-500 to-purple-500">
     <div class="flex justify-center flex-col items-center h-screen">
-        <form class="bg-white p-12 rounded-lg max-w-sm mx-auto mt-8">
+        <form action="../lib/Controller/login_proses.php" method="post" class="bg-white p-12 rounded-lg max-w-sm mx-auto mt-8">
             <a href="./index.php"><-</a>
             <div class="mb-4">
                 <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
