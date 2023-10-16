@@ -33,12 +33,13 @@
 
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    // Display data, for example, print it
-                    echo "Title {$row['title']}";
-                }
+                return $result;
+                // while ($row = $result->fetch_assoc()) {
+                //     // Display data, for example, print it
+                //     echo "Title {$row['title']}";
+                // }
             } else {
-                echo "No results found.";
+                return "No Result";
             }
 
 
