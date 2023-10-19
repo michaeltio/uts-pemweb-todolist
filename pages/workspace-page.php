@@ -4,13 +4,15 @@
    require '../init.php';
    require '../lib/Models/Task.php';
    use Models\Task;
-   if (isset($_SESSION['username'])) {
-       // User is logged in; allow access to the dashboard
-   } else {
-       header('Location: ./login-page.php'); // Redirect to the login page
-       exit();
-   }
-   
+
+   //deteksi kalo user belmo ada session
+   if (!isset($_SESSION['username'])) {
+      header('Location: ./login-page.php'); 
+      exit();
+   } 
+
+
+   //nge fetch data
    $userLogin = Task::getInstance("localhost", "root", "", "todolist");
    $taskList = $userLogin->getData($_SESSION['username']);
    
@@ -24,7 +26,15 @@
            $completedTasks[] = $row;
        }
    }
-   ?>
+
+   //logout button, destroy session
+   if (isset($_POST['logoutButton'])) {
+      session_destroy();
+  
+      header("Location: login-page.php");
+      exit();
+  }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -38,18 +48,18 @@
    <body class="">
       <div>
          <div class="text-center mt-8">
-            <button  button class="fixed top-0 right-0 m-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                Log Out
+            <button id="logoutButton" class="fixed top-0 right-0 m-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+               Log Out
             </button>
-            <h1 class="font-bold text-5xl text-white ">PrioriList</h1>
+            <h1 class="font-bold text-5xl text-white">PrioriList</h1>
             <p class="text-5xl text-white ">Hello, <?= $_SESSION['username'] ?> </p>
          </div>
          <div class="flex flex-wrap p-8 md:flex-nowrap md:justify-center md:gap-8">
-            <div class="bg-neutral-50 mt-12 p-8 rounded-lg w-full md:w-1/4">
+            <div class="bg-neutral-50 mt-12 p-8 rounded-lg w-full md:w-full xl:w-1/4">
                <div class="flex justify-between">
                   <h1 class="font-bold text-center">List Kamu Sekarang</h1>
                   <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-                  Tambah List
+                     Tambah List
                   </button>
                </div>
                <table class="table-auto border-collapse border w-full mt-4">
@@ -62,8 +72,8 @@
                   </thead>
                   <tbody>
                      <?php foreach ($incompleteTasks as $row) {?>
-                     <tr class="hover:bg-gray-200">
-                        <td class="border px-4 py-2"><?= $row['title'] ?></td>
+                        <tr class="hover:bg-gray-200">
+                           <td class="border px-4 py-2"><?= $row['title'] ?></td>
                         <td class="border px-4 py-2">
                            <div class="flex items-center justify-center">
                               <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> class="">
@@ -81,8 +91,7 @@
                   </tbody>
                </table>
             </div>
-
-            <div class="bg-neutral-50 mt-12 p-8 rounded-lg w-full md:w-1/4">
+            <div class="bg-neutral-50 mt-12 p-8 rounded-lg w-full md:w-full xl:w-1/4">
                <h1 class="font-bold text-center">Sudah Selesai</h1>
                <table class="table-auto border-collapse border w-full mt-4">
                   <thead>
@@ -94,16 +103,16 @@
                   </thead>
                   <tbody>
                      <?php foreach ($completedTasks as $row) {?>
-                     <tr class="hover:bg-gray-200">
-                        <td class="border px-4 py-2"><?= $row['title'] ?></td>
-                        <td class="border px-4 py-2">
-                           <div class="flex items-center justify-center">
+                        <tr class="hover:bg-gray-200">
+                           <td class="border px-4 py-2"><?= $row['title'] ?></td>
+                           <td class="border px-4 py-2">
+                              <div class="flex items-center justify-center">
                               <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?>>
                            </div>
                         </td>
                         <td class="border px-4 py-2">
                            <button class="border border-gray-500 hover:bg-red-500 hover:text-white  hover:border-white py-2 px-4 rounded w-full">
-                           Hapus
+                              Hapus
                            </button>
                         </td>
                      </tr>
@@ -112,6 +121,19 @@
                </table>
             </div>
          </div>
+         <!-- logout -->
+         <div id="logoutModal" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 invisible">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+               <h1 class="text-2xl font-bold">Are you sure you want to log out?</h1>
+               <form method="post">
+                  <div class="mt-4 flex justify-center gap-8">
+                     <button id="cancelButton" class="bg-gray-400 text-white p-2 rounded w-full">Cancel</button>
+                     <button id="confirmButton" name="logoutButton" class="bg-red-500 text-white p-2 rounded w-full">Yes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
       </div>
+      <script src="../function/logoutPopUp.js"></script>
    </body>
 </html>

@@ -1,5 +1,9 @@
 <?php
-    //echo "login page";
+    session_start();
+    if (isset($_SESSION['username'])) {
+        header('Location: ./workspace-page.php'); 
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
