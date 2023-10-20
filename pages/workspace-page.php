@@ -48,9 +48,8 @@
    if (isset($_POST['taskId']) && isset($_POST['isComplete'])) {
       $taskId = $_POST['taskId'];
       $isComplete = $_POST['isComplete'];
-      
-    
-      
+      $userLogin->updateCheckBox($taskId, $isComplete);
+      header('Location: workspace-page.php');
   }
 ?>
 <!DOCTYPE html>
@@ -128,7 +127,7 @@
                            <td class="border px-4 py-2"><?= $row['title'] ?></td>
                            <td class="border px-4 py-2">
                               <div class="flex items-center justify-center">
-                              <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?>>
+                              <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
                            </div>
                         </td>
                         <td class="border px-4 py-2">

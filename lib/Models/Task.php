@@ -49,6 +49,13 @@
             $stmt->bind_param("sss", $username, $taskTitle, $taskDescription);
             $stmt->execute();
         }
+
+        public function updateCheckBox($taskId, $isComplete){
+            $query = "UPDATE tasks SET isComplete = ? WHERE id_task = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("ii", $isComplete, $taskId);
+            $stmt->execute();
+        }
     
         private function connect() {
             $this->conn = new \mysqli($this->host, $this->user, $this->pass, $this->conn);
@@ -57,7 +64,8 @@
                 die("Connection failed: " . $this->conn->connect_error);
             }
         }
-    
+        
+
     
         public function close() {
             $this->conn->close();
