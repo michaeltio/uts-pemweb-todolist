@@ -13,8 +13,8 @@
 
 
    //nge fetch data
-   $userLogin = Task::getInstance("localhost", "root", "", "todolist");
-   $taskList = $userLogin->getData($_SESSION['username']);
+   $userTasks = Task::getInstance("localhost", "root", "", "todolist");
+   $taskList = $userTasks->getData($_SESSION['username']);
    
    $incompleteTasks = [];
    $completedTasks = [];
@@ -40,15 +40,21 @@
       $taskTitle = $_POST['taskTitle'];
       $taskDescription = $_POST['taskDescription'];
 
-      $userLogin->insertNewTask($_SESSION['username'], $taskTitle, $taskDescription);
+      $userTasks->insertNewTask($_SESSION['username'], $taskTitle, $taskDescription);
       header('Location: workspace-page.php');
    }
+
+   //delete list button
+   if (isset($_POST['taskID']) && isset($_POST['deleteButton'])) {
+      $taskID = $_POST['taskID'];
+      $userTasks->deleteList($taskID);
+  }
 
    //checkbox listener
    if (isset($_POST['taskId']) && isset($_POST['isComplete'])) {
       $taskId = $_POST['taskId'];
       $isComplete = $_POST['isComplete'];
-      $userLogin->updateCheckBox($taskId, $isComplete);
+      $userTasks->updateCheckBox($taskId, $isComplete);
       header('Location: workspace-page.php');
   }
 ?>
@@ -98,11 +104,11 @@
                               <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
                            </div>
                         </td>
-                        <td class="border px-4 py-2">
-                           <select name="progressDropdown" class="w-full">
-                              <option value="plantodo">Plan To Do</option>
-                              <option value="onhold">On Hold</option>
-                              <option value="inprogress">In Progress</option>
+                        <td class="border px-4 py-2"> 
+                           <select name="progressDropdown" class="w-full <?= $row['progress'] == 'plantodo'? 'bg-blue-200' : ($row['progress'] == 'onhold' ? 'bg-red-200' : 'bg-yellow-200') ?>">
+                              <option value="plantodo" <?= ($row['progress'] == 'plantodo') ? 'selected' : '' ?> >Plan To Do</option>
+                              <option value="onhold" <?= ($row['progress'] == 'onhold') ? 'selected' : '' ?>>On Hold</option>
+                              <option value="inprogress" <?= ($row['progress'] == 'inprogress') ? 'selected' : '' ?>>In Progress</option>
                            </select>
                         </td>
                      </tr>
@@ -131,7 +137,7 @@
                            </div>
                         </td>
                         <td class="border px-4 py-2">
-                           <button class="border border-gray-500 hover:bg-red-500 hover:text-white  hover:border-white py-2 px-4 rounded w-full">
+                           <button class="border border-gray-500 hover:bg-red-500 hover:text-white hover:border-white py-2 px-4 rounded w-full" id="deleteButtonPopUp" data-task-id="<?= $row['id_task'] ?>" onclick="showPopup('<?= $row['title']?>')">
                               Hapus
                            </button>
                         </td>
@@ -177,9 +183,22 @@
                </form>
             </div>
          </div>
+         <!-- delete list pop up -->
+         <div id="deleteConfirmContainer" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 invisible">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+               <h1 class="text-2xl font-bold">Are you sure you want to delete <span id="deleteContent"></span> ?</h1>
+               <form method="post">
+                  <div class="mt-4 flex justify-center gap-8">
+                     <button id="cancelDeleteButton" class="bg-gray-400 text-white p-2 rounded w-full">No</button>
+                     <button id="deleteButton" name="deleteButton" class="bg-red-500 text-white p-2 rounded w-full">Delete</button>
+                  </div>
+               </form>
+            </div>
+         </div>
       </div>
       <script src="../function/logoutPopUp.js"></script>
       <script src="../function/closeAddList.js"></script>
       <script src="../function/checkBoxListener.js"></script>
+      <script src="../function/deleteListPopUp.js"></script>
    </body>
 </html>

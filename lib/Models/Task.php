@@ -56,6 +56,13 @@
             $stmt->bind_param("ii", $isComplete, $taskId);
             $stmt->execute();
         }
+
+        public function deleteList($taskId){
+            $query = "DELETE FROM tasks WHERE id_task = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $taskId);
+            $stmt->execute();
+        }
     
         private function connect() {
             $this->conn = new \mysqli($this->host, $this->user, $this->pass, $this->conn);
