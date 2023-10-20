@@ -41,8 +41,13 @@
             } else {
                 return "No Result";
             }
+        }
 
-
+        public function insertNewTask($username, $taskTitle, $taskDescription){
+            $query = "INSERT INTO tasks(username, title, task_desc, created, isComplete, progress) VALUES (?, ?, ?, NOW(), 0, 'Not Started')";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("sss", $username, $taskTitle, $taskDescription);
+            $stmt->execute();
         }
     
         private function connect() {
@@ -53,15 +58,6 @@
             }
         }
     
-        public function query($sql) {
-            $result = $this->conn->query($sql);
-    
-            if (!$result) {
-                die("Query failed: " . $this->conn->error);
-            }
-    
-            return $result;
-        }
     
         public function close() {
             $this->conn->close();
