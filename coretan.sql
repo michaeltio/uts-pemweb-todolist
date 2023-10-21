@@ -22,7 +22,7 @@ CREATE TABLE tasks(
     FOREIGN KEY(username) REFERENCES users(username)
 );
 
---dummy values
+-- dummy values
 INSERT INTO users (username, password) VALUES
 ('admin', 'admin'),
 ('rehan', 'guaganteng'),

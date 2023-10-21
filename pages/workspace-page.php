@@ -55,7 +55,7 @@
 
    //checkbox listener
    if (isset($_POST['taskId']) && isset($_POST['isComplete'])) {
-      $taskId = $_POST['taskId'];
+      $taskId = htmlspecialchars($_POST['taskId']);
       $isComplete = $_POST['isComplete'];
       $userTasks->updateCheckBox($taskId, $isComplete);
       header('Location: workspace-page.php');
@@ -96,7 +96,7 @@
                Log Out
             </button>
             <h1 class="font-bold text-5xl text-white">PrioriList</h1>
-            <p class="text-5xl text-white ">Hello, <?= $_SESSION['username'] ?> </p>
+            <p class="text-5xl text-white ">Hello, <?= htmlspecialchars($_SESSION['username']) ?> </p>
          </div>
          <!-- tabel list -->
          <div class="flex flex-wrap p-8 md:flex-nowrap md:justify-center md:gap-8 h-screen">
@@ -169,7 +169,7 @@
                      <?php if($incompleteTasks > 0){  
                            foreach ($completedTasks as $row) {?>
                         <tr class="hover:bg-gray-200">
-                           <td class="border px-4 py-2"><?= $row['title'] ?></td>
+                           <td class="border px-4 py-2"><?= htmlspecialchars($row['title']) ?></td>
                            <td class="border px-4 py-2">
                               <div class="flex items-center justify-center">
                               <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
@@ -202,9 +202,9 @@
                      <img src="../public/assets/images/close_round.svg" alt="">
                   </button>
                </div>
-               <form method="post" class="bg-white p-6 rounded-lg shadow-md">
+               <form method="post" class="bg-white p-6 rounded-lg shadow-md" onsubmit="return validateForm()">
                   <label for="title" class="block mb-2">Title</label>
-                  <input type="text" id="title" name="taskTitle" class="w-full p-2 border border-gray-300 rounded mb-4" require>
+                  <input type="text" id="title" name="taskTitle" oninput="filterInput(this)" class="w-full p-2 border border-gray-300 rounded mb-4" required>
 
                   <label for="description" class="block mb-2">Description (optional)</label>
                   <textarea id="description" name="taskDescription" class="w-full p-2 border border-gray-300 rounded mb-4 h-32 resize-none"></textarea>
@@ -255,7 +255,7 @@
                   <h1 id="taskDate">Created : this is date</h1>
                   <input type="hidden" id="hiddenTaskIdEdit" name="hiddenTaskIdEdit">
                   <label for="title" class="block mb-2">Title</label>
-                  <input type="text" id="taskEditTitle" name="taskEditTitle" class="w-full p-2 border border-gray-300 rounded mb-4" require>
+                  <input type="text" id="taskEditTitle" name="taskEditTitle" oninput="filterInput(this)" class="w-full p-2 border border-gray-300 rounded mb-4" required>
                   
                   <label for="description" class="block mb-2">Description</label>
                   <textarea id="taskEditDescription" name="taskEditDescription" class="w-full p-2 border border-gray-300 rounded mb-4 h-32 resize-none"></textarea>
@@ -267,6 +267,7 @@
             </div>
          </div>
       </div>
+      <script src="./../function/regex.js"></script>
       <script src="../function/deleteListPopUp.js"></script>
       <script src="../function/logoutPopUp.js"></script>
       <script src="../function/closeAddList.js"></script>
