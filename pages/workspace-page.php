@@ -172,7 +172,7 @@
                            <td class="border px-4 py-2"><?= htmlspecialchars($row['title']) ?></td>
                            <td class="border px-4 py-2">
                               <div class="flex items-center justify-center">
-                              <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
+                              <input type="checkbox" <?= htmlspecialchars($row['isComplete']) ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
                            </div>
                         </td>
                         <td class="border px-4 py-2">
