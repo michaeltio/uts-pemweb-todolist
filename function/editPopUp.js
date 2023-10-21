@@ -4,7 +4,7 @@ const titleInput = document.getElementById('taskEditTitle');
 const descriptionInput = document.getElementById('taskEditDescription');
 const hiddenTaskId = document.getElementById("hiddenTaskIdEdit");
 function showEditPopUp(taskTitle, taskDescription, taskDate, taskId) {
-    titleDate.textContent = taskDate;
+    titleDate.textContent = `created: ${taskDate}`;
     titleInput.value = taskTitle;
     descriptionInput.value = taskDescription;
     hiddenTaskId.value = taskId;
