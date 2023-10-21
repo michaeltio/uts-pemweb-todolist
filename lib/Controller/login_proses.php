@@ -7,8 +7,12 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["username"];
         $password = $_POST["password"];
-    
+
         $login = User::getInstance("localhost", "root", "", "todolist");
+
+        // $username = mysqli_real_escape_string($login, $_POST['username']);
+        // $password = mysqli_real_escape_string($login, $_POST['password']);
+
         if($login->auth($username, $password)){
             header('location: ../../pages/workspace-page.php');
         }

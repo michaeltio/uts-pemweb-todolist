@@ -76,6 +76,8 @@
                 return 0;
             }
         }
+
+        
     
         public function close() {
             $this->conn->close();

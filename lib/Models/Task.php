@@ -61,6 +61,13 @@
             $stmt->bind_param("si", $selectedValue, $taskId);
             $stmt->execute();
         }
+
+        public function updateList($taskId, $newTitle, $newDescription){
+            $query = "UPDATE tasks SET title = ?, task_desc = ? WHERE id_task = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("ssi", $newTitle, $newDescription, $taskId);
+            $stmt->execute();
+        }
     
         private function connect() {
             $this->conn = new \mysqli($this->host, $this->user, $this->pass, $this->conn);

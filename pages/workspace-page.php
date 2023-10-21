@@ -67,6 +67,16 @@
 
    $userTasks->updateDropDown($selectedValue, $taskId);
    } 
+
+   //edit list button
+   if(isset($_POST['editListButton'])){
+      $taskId = $_POST['hiddenTaskIdEdit'];
+      $newTitle = $_POST['taskEditTitle'];
+      $newDescription = $_POST['taskEditDescription'];
+
+      $userTasks->updateList($taskId, $newTitle, $newDescription);
+      header('Location: workspace-page.php');
+   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +121,17 @@
                         if($incompleteTasks > 0){  
                            foreach ($incompleteTasks as $row) {?>
                               <tr class="hover:bg-gray-200">
-                                 <td class="border px-4 py-2"><?= $row['title'] ?></td>
+                                 <td class="border px-4 py-2"> 
+                                 <button onclick="showEditPopUp(
+                                    '<?= $row['title'] ?>', 
+                                    '<?= $row['task_desc'] ?>', 
+                                    '<?= $row['created'] ?>', 
+                                    '<?= $row['id_task']?>'
+                                    )" 
+                                    class="bg-blue-500 text-white py-2 px-4 rounded-md transition duration-300 hover:bg-blue-600 hover:text-white hover:shadow-md">
+                                    <?= $row['title'] ?>
+                                 </button>
+                                 </td>
                               <td class="border px-4 py-2">
                                  <div class="flex items-center justify-center">
                                     <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
@@ -220,6 +240,32 @@
                </form>
             </div>
          </div>
+         <!-- edit list -->
+         <div id="editListContainer" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 invisible">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+               <div class="flex justify-between align-center">
+                  <div class="flex items-stretch">
+                     <h1 class="text-2xl font-bold text-center">Edit</h1>
+                  </div>
+                  <button id="closeEditList" class="m-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-12" onclick="closeEditPopUp()">
+                     <img src="../public/assets/images/close_round.svg" alt="">
+                  </button>
+               </div>
+               <form method="post" class="bg-white p-6 rounded-lg shadow-md">
+                  <h1 id="taskDate">Created : this is date</h1>
+                  <input type="hidden" id="hiddenTaskIdEdit" name="hiddenTaskIdEdit">
+                  <label for="title" class="block mb-2">Title</label>
+                  <input type="text" id="taskEditTitle" name="taskEditTitle" class="w-full p-2 border border-gray-300 rounded mb-4" require>
+                  
+                  <label for="description" class="block mb-2">Description</label>
+                  <textarea id="taskEditDescription" name="taskEditDescription" class="w-full p-2 border border-gray-300 rounded mb-4 h-32 resize-none"></textarea>
+                  
+                  <button type="submit" name="editListButton" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">
+                     Save
+                  </button>
+               </form>
+            </div>
+         </div>
       </div>
       <script src="../function/deleteListPopUp.js"></script>
       <script src="../function/logoutPopUp.js"></script>
@@ -227,5 +273,6 @@
       <script src="../function/checkBoxListener.js"></script>
       <script src="../function/deletePopUp.js"></script>
       <script src="../function/dropDownListener.js"></script>
-     
-</html>
+      <script src="../function/editPopUp.js"></script>
+      
+      </html>

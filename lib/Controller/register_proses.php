@@ -13,6 +13,8 @@
 
         $state = '';
         $user = User::getInstance("localhost", "root", "", "todolist");
+        // $username = mysqli_real_escape_string($user,$_POST['username']);
+        // $password = mysqli_real_escape_string($user,$_POST['password']);
         if ($user->isUserAlreadyTaken($username)) {
             $state = "taken";
             $contentResult = "Username is already taken. Please choose a different one.";
