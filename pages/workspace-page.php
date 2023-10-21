@@ -35,7 +35,7 @@
       exit();
   }
 
-  //deteksi untuk pembuatan list baru
+  //add new list
    if (isset($_POST['addlistButton'])) {
       $taskTitle = $_POST['taskTitle'];
       $taskDescription = $_POST['taskDescription'];
@@ -45,7 +45,6 @@
    }
 
    //delete list button
-  
    if(isset($_POST['deleteButton'])){
       $taskId = $_POST['taskId'];
       $userTasks->deleteList($taskId);
@@ -70,9 +69,9 @@
 
    //edit list button
    if(isset($_POST['editListButton'])){
-      $taskId = $_POST['hiddenTaskIdEdit'];
-      $newTitle = $_POST['taskEditTitle'];
-      $newDescription = $_POST['taskEditDescription'];
+      $taskId = htmlspecialchars($_POST['hiddenTaskIdEdit']);
+      $newTitle = htmlspecialchars($_POST['taskEditTitle']);
+      $newDescription = htmlspecialchars($_POST['taskEditDescription']);
 
       $userTasks->updateList($taskId, $newTitle, $newDescription);
       header('Location: workspace-page.php');
@@ -123,13 +122,13 @@
                               <tr class="hover:bg-gray-200">
                                  <td class="border px-4 py-2"> 
                                  <button onclick="showEditPopUp(
-                                    '<?= $row['title'] ?>', 
-                                    '<?= $row['task_desc'] ?>', 
+                                    '<?= htmlspecialchars($row['title']) ?>', 
+                                    '<?= htmlspecialchars($row['task_desc']) ?>', 
                                     '<?= $row['created'] ?>', 
                                     '<?= $row['id_task']?>'
                                     )" 
                                     class="bg-blue-500 text-white py-2 px-4 rounded-md transition duration-300 hover:bg-blue-600 hover:text-white hover:shadow-md">
-                                    <?= $row['title'] ?>
+                                    <?= htmlspecialchars($row['title']) ?>
                                  </button>
                                  </td>
                               <td class="border px-4 py-2">
