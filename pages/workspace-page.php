@@ -45,10 +45,13 @@
    }
 
    //delete list button
-   if (isset($_POST['taskID']) && isset($_POST['deleteButton'])) {
-      $taskID = $_POST['taskID'];
-      $userTasks->deleteList($taskID);
-  }
+  
+   if(isset($_POST['deleteButton'])){
+      $taskId = $_POST['taskId'];
+      $userTasks->deleteList($taskId);
+      header('Location: workspace-page.php');
+   }
+   
 
    //checkbox listener
    if (isset($_POST['taskId']) && isset($_POST['isComplete'])) {
@@ -57,6 +60,18 @@
       $userTasks->updateCheckBox($taskId, $isComplete);
       header('Location: workspace-page.php');
   }
+  //dropdown listener
+  if (isset($_POST['selectedValue']) && isset($_POST['taskId'])) {
+   $selectedValue = $_POST['selectedValue'];
+   $taskId = $_POST['taskId'];
+
+   $userTasks->updateDropDown($selectedValue, $taskId);
+   // Perform actions based on the selectedValue and taskId
+   // For example, update the database with the new progress value for the task.
+   
+   // Send a response if needed
+   
+   } 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +81,7 @@
       <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/public/css/app.css">
       <link rel="stylesheet" href="./css/background.css">
+      
       <title>Workspace | Priorilist</title>
    </head>
    <body class="overflow-hidden">
@@ -105,7 +121,7 @@
                            </div>
                         </td>
                         <td class="border px-4 py-2"> 
-                           <select name="progressDropdown" class="w-full <?= $row['progress'] == 'plantodo'? 'bg-blue-200' : ($row['progress'] == 'onhold' ? 'bg-red-200' : 'bg-yellow-200') ?>">
+                           <select name="progressDropdown" class="progressDropdown w-full <?= $row['progress'] == 'plantodo'? 'bg-blue-200' : ($row['progress'] == 'onhold' ? 'bg-red-200' : 'bg-yellow-200') ?>" data-task-id="<?= $row['id_task'] ?>">
                               <option value="plantodo" <?= ($row['progress'] == 'plantodo') ? 'selected' : '' ?> >Plan To Do</option>
                               <option value="onhold" <?= ($row['progress'] == 'onhold') ? 'selected' : '' ?>>On Hold</option>
                               <option value="inprogress" <?= ($row['progress'] == 'inprogress') ? 'selected' : '' ?>>In Progress</option>
@@ -137,7 +153,7 @@
                            </div>
                         </td>
                         <td class="border px-4 py-2">
-                           <button class="border border-gray-500 hover:bg-red-500 hover:text-white hover:border-white py-2 px-4 rounded w-full" id="deleteButtonPopUp" data-task-id="<?= $row['id_task'] ?>" onclick="showPopup('<?= $row['title']?>')">
+                           <button class="taskDelete border border-gray-500 hover:bg-red-500 hover:text-white hover:border-white py-2 px-4 rounded w-full" id="deleteButtonPopUp" onclick="showPopup('<?= $row['title']?>', <?= $row['id_task'] ?>)">
                               Hapus
                            </button>
                         </td>
@@ -189,16 +205,19 @@
                <h1 class="text-2xl font-bold">Are you sure you want to delete <span id="deleteContent"></span> ?</h1>
                <form method="post">
                   <div class="mt-4 flex justify-center gap-8">
-                     <button id="cancelDeleteButton" class="bg-gray-400 text-white p-2 rounded w-full">No</button>
+                     <input type="hidden" name="taskId" id="taskIdInput">
+                     <button id="cancelDeleteButton" class="bg-gray-400 text-white p-2 rounded w-full" onclick="closePopUp()">No</button>
                      <button id="deleteButton" name="deleteButton" class="bg-red-500 text-white p-2 rounded w-full">Delete</button>
                   </div>
                </form>
             </div>
          </div>
       </div>
+      <script src="../function/deleteListPopUp.js"></script>
       <script src="../function/logoutPopUp.js"></script>
       <script src="../function/closeAddList.js"></script>
       <script src="../function/checkBoxListener.js"></script>
-      <script src="../function/deleteListPopUp.js"></script>
-   </body>
+      <script src="../function/deletePopUp.js"></script>
+      <script src="../function/dropDownListener.js"></script>
+     
 </html>

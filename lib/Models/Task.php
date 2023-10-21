@@ -63,6 +63,13 @@
             $stmt->bind_param("i", $taskId);
             $stmt->execute();
         }
+
+        public function updateDropDown($selectedValue, $taskId){
+            $query = "UPDATE tasks SET progress = ? WHERE id_task = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("si", $selectedValue, $taskId);
+            $stmt->execute();
+        }
     
         private function connect() {
             $this->conn = new \mysqli($this->host, $this->user, $this->pass, $this->conn);
