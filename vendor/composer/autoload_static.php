@@ -57,6 +57,10 @@ class ComposerStaticInitf88748ea26067e76f6d463a1d8d5bc1c
         array (
             'Nflue\\UtsPemwebTodolist\\' => 24,
         ),
+        'M' => 
+        array (
+            'Models\\' => 7,
+        ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
@@ -175,6 +179,10 @@ class ComposerStaticInitf88748ea26067e76f6d463a1d8d5bc1c
         'Nflue\\UtsPemwebTodolist\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib/models',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
