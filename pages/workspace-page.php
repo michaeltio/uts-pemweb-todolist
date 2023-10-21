@@ -107,23 +107,30 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <?php foreach ($incompleteTasks as $row) {?>
-                        <tr class="hover:bg-gray-200">
-                           <td class="border px-4 py-2"><?= $row['title'] ?></td>
-                        <td class="border px-4 py-2">
-                           <div class="flex items-center justify-center">
-                              <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
-                           </div>
-                        </td>
-                        <td class="border px-4 py-2"> 
-                           <select name="progressDropdown" class="progressDropdown w-full <?= $row['progress'] == 'plantodo'? 'bg-blue-200' : ($row['progress'] == 'onhold' ? 'bg-red-200' : 'bg-yellow-200') ?>" data-task-id="<?= $row['id_task'] ?>">
-                              <option value="plantodo" <?= ($row['progress'] == 'plantodo') ? 'selected' : '' ?> >Plan To Do</option>
-                              <option value="onhold" <?= ($row['progress'] == 'onhold') ? 'selected' : '' ?>>On Hold</option>
-                              <option value="inprogress" <?= ($row['progress'] == 'inprogress') ? 'selected' : '' ?>>In Progress</option>
-                           </select>
-                        </td>
-                     </tr>
-                     <?php } ?>
+                     <?php
+                        if($incompleteTasks > 0){  
+                           foreach ($incompleteTasks as $row) {?>
+                              <tr class="hover:bg-gray-200">
+                                 <td class="border px-4 py-2"><?= $row['title'] ?></td>
+                              <td class="border px-4 py-2">
+                                 <div class="flex items-center justify-center">
+                                    <input type="checkbox" <?= $row['isComplete'] ? 'checked' : '' ?> data-task-id="<?= $row['id_task']?>" >
+                                 </div>
+                              </td>
+                              <td class="border px-4 py-2"> 
+                                 <select name="progressDropdown" class="progressDropdown w-full <?= $row['progress'] == 'plantodo'? 'bg-blue-200' : ($row['progress'] == 'onhold' ? 'bg-red-200' : 'bg-yellow-200') ?>" data-task-id="<?= $row['id_task'] ?>">
+                                    <option value="plantodo" <?= ($row['progress'] == 'plantodo') ? 'selected' : '' ?> >Plan To Do</option>
+                                    <option value="onhold" <?= ($row['progress'] == 'onhold') ? 'selected' : '' ?>>On Hold</option>
+                                    <option value="inprogress" <?= ($row['progress'] == 'inprogress') ? 'selected' : '' ?>>In Progress</option>
+                                 </select>
+                              </td>
+                              </tr>
+                     <?php 
+                           } 
+                        } else {
+                           echo "No Result";
+                        } 
+                     ?>
                   </tbody>
                </table>
             </div>
@@ -139,7 +146,8 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <?php foreach ($completedTasks as $row) {?>
+                     <?php if($incompleteTasks > 0){  
+                           foreach ($completedTasks as $row) {?>
                         <tr class="hover:bg-gray-200">
                            <td class="border px-4 py-2"><?= $row['title'] ?></td>
                            <td class="border px-4 py-2">
@@ -153,7 +161,12 @@
                            </button>
                         </td>
                      </tr>
-                     <?php } ?>
+                     <?php 
+                           } 
+                        } else {
+                           echo "No Result";
+                        } 
+                     ?>
                   </tbody>
                </table>
             </div>

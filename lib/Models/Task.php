@@ -30,17 +30,8 @@
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("s", $username);
             $stmt->execute();
-
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0) {
-                return $result;
-                // while ($row = $result->fetch_assoc()) {
-                //     // Display data, for example, print it
-                //     echo "Title {$row['title']}";
-                // }
-            } else {
-                return "No Result";
-            }
+            $result = $stmt->get_result();      
+            return $result;          
         }
 
         public function insertNewTask($username, $taskTitle, $taskDescription){
