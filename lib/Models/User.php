@@ -58,9 +58,23 @@
             $query = "INSERT INTO users(username, password) VALUES (?, ?)";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("ss", $username, $password);
-
             $stmt->execute();
-          
+        }
+
+        public function isUserAlreadyTaken($username){
+            $count = 0; 
+            $query = "SELECT COUNT(*) FROM users WHERE username = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->bind_result($count);
+            $stmt->fetch();  
+
+            if ($count == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
     
         public function close() {

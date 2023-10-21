@@ -13,22 +13,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/css/app.css">
+    <link rel="stylesheet" href="./css/background.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./../function/regex.js"></script>
     <title>Login | Priorilist</title>
 </head>
-<body class="bg-gradient-to-tr from-orange-500 to-purple-500">
+<body>
     <div class="flex justify-center flex-col items-center h-screen">
         <form action="../lib/Controller/login_proses.php" method="post" class="bg-white p-12 rounded-lg max-w-sm mx-auto mt-8">
-            <a href="./index.php"><-</a>
+            <a href="./index.php"><img src="../public/assets/images/back_arrow.svg" class="mb-4" alt=""></a>
             <div class="mb-4">
                 <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username">
+                <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username" required>
             </div>
 
             <div class="mb-6">
                 <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password">
+                <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password" required>
             </div>
 
             <div class="flex items-center justify-between">

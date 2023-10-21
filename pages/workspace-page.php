@@ -66,11 +66,6 @@
    $taskId = $_POST['taskId'];
 
    $userTasks->updateDropDown($selectedValue, $taskId);
-   // Perform actions based on the selectedValue and taskId
-   // For example, update the database with the new progress value for the task.
-   
-   // Send a response if needed
-   
    } 
 ?>
 <!DOCTYPE html>
