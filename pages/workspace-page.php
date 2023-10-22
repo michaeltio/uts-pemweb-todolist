@@ -226,6 +226,18 @@
                </form>
             </div>
          </div>
+         <!-- notif complete task -->
+         <div id="finishTaskContainer" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 invisible">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+               <h1 id="h1Content" class="text-2xl font-bold">Are you sure you want to finish this task ?</h1>
+               <form method="post">
+                  <div class="mt-4 flex justify-center gap-8">
+                     <button id="noFinish" name="noFinish" class="bg-gray-400 text-white p-2 rounded w-full">Cancel</button>
+                     <button id="yesFinish" name="yesFinish" class="bg-red-500 text-white p-2 rounded w-full">Yes</button>
+                  </div>
+               </form>
+            </div>
+         </div>
          <!-- delete list pop up -->
          <div id="deleteConfirmContainer" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 invisible">
             <div class="bg-white p-4 rounded-lg shadow-md">
@@ -267,10 +279,9 @@
          </div>
       </div>
       <script src="./../function/regex.js"></script>
-      <script src="../function/deleteListPopUp.js"></script>
       <script src="../function/logoutPopUp.js"></script>
       <script src="../function/closeAddList.js"></script>
-      <script src="../function/checkBoxListener.js"></script>
+      <script src="../function/checkBoxListenerrr.js"></script>
       <script src="../function/deletePopUp.js"></script>
       <script src="../function/dropDownListener.js"></script>
       <script src="../function/editPopUp.js"></script>
